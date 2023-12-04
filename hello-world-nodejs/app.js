@@ -9,7 +9,7 @@ const appPort = process.env.APP_PORT || 80;
 app.get('/', async (req, res) => {
   try {
     // Make a GET request to the /query API of the Python app
-    const response = await axios.get(`http://${appHost}:${appPort}/book`);
+    const response = await axios.get(`http://${appHost}:${appPort}/book-update`);
 
     // Extract the data from the response
     const data = response.data;
@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
         <head>
           <title>My Book Library</title>
         </head>
-        <body bgcolor="#87CEEB">
+        <body bgcolor="#eb879c">
           <h1>Book Data</h1>
           <table border="1">
             <thead>

@@ -18,7 +18,7 @@ public class HomeController {
 
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@GetMapping("/book")
+	@GetMapping("/book-update")
 	public List getBookList() {
 		logger.info("Get book list");
 		return bookRepository.findAll();

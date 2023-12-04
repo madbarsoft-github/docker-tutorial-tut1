@@ -1,5 +1,5 @@
 version: '3.8'
-name: book-li
+name: book-library-app
 services:
   node-frontend-service:
     image: node-frontend-image
@@ -34,7 +34,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: simpledb
     ports:
-      - '3316:3306'
+      - '3306:3306'
     networks:
       - my-net
     volumes:

@@ -1,0 +1,52 @@
+     
+     
+      version: '3.8'
+      name: book-li
+      services:
+        node-frontend-service:
+          image: node-frontend-image
+          container_name: node-frontend-app
+          environment:
+            APP_HOST: spring-mysql-app
+            APP_PORT: 8080
+          ports:
+            - "3000:3000"
+          networks:
+            - my-net
+          depends_on:
+            - spring-mysql-service
+        spring-mysql-service:
+          image: spring-mysql-image
+          container_name: spring-mysql-app
+          environment:
+            MYSQL_HOST: mysqldb
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_DATABASE: simpledb
+          ports:
+            - "8080:8080"
+          networks:
+            - my-net
+          depends_on:
+            - mysql-service
+        mysql-service:
+          image: mysql:8.2.0
+          container_name: mysqldb
+          environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: simpledb
+          ports:
+            - '3316:3306'
+          networks:
+            - my-net
+          volumes:
+            - mysql-data-vol:/var/lib/mysql
+      networks:
+        my-net:
+          driver: bridge
+          name: my-net
+          external: true
+      volumes:
+        mysql-data-vol:
+          name: mysql-data-vol
+          external: true
